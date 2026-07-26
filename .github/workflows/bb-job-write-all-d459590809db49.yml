@@ -1,0 +1,15 @@
+name: bb-permission-job-write-all-d459590809db49
+on:
+  workflow_dispatch:
+permissions: read-all
+jobs:
+  synthetic:
+    if: false
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden the runner
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920
+        with:
+          egress-policy: audit
+      - run: echo "bb-permission-job-write-all-d459590809db49"
