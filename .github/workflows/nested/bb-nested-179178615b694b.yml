@@ -1,0 +1,10 @@
+name: BugBase Template 179178615b694b
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  marker:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "bb-nested-a-179178615b694b"
