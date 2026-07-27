@@ -1,0 +1,26 @@
+name: BugBase Secure Repo CANONICAL 1 D49B3417BCE7F4
+on:
+  push:
+    branches:
+      - bb-securerepo-case-d49b3417bce7f4
+permissions:
+  contents: read
+jobs:
+  canonical_1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            api.github.com:443
+            github.com:443
+      - name: Probe CANONICAL 1 D49B3417BCE7F4
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          curl -fsS --connect-timeout 5 --max-time 12 https://example.com/ -o /dev/null
+          rc=$?
+          echo "BB_SR_CANONICAL_1_D49B3417BCE7F4=$rc"
+          exit 0
